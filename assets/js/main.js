@@ -1,6 +1,6 @@
 function stepper(btn, idproduct) {
-  //const countField = document.querySelector('.count__input'); тут ти вибирав перший елемент який має класс .count__input
-  let countField = document.querySelector(`#count__input${idproduct}`); //тут вибирається різні елемент з різними id, якшо коротко при нажатиии на кнопку передаються ід товара яке підставляється сюди аби знати з яким товаром проходться зміни
+  //const countField = document.querySelector('.count__input'); 
+  let countField = document.querySelector(`#count__input${idproduct}`); //тут вибирається різні елемент з різними id
 
   let id = btn.getAttribute("id");
   let min = countField.getAttribute("min");
@@ -34,30 +34,20 @@ function addToCart(id) {
   });
 }
 
-async function deleteProduct(id) {
+async function deleteProduct(product, id) {
   $.ajax({
     url: "/controllers/DeleteCartController.php",
     type: "post",
     data: { id: id },
   })
     .done(function (result) {
-      //$('#product' + id).remove(result);
-      //$('#restart').html(result);
-      //$('#product' + id).html('');
-      $("#count_products_cart").html(result);
-      
-      //location.reload();
+      sb_remove_from_basket(product);
     })
     .fail(function () {
       console.log("fail");
     });
-
-    updateShopCart();
 }
 
-
-/*===============================*/
-
-function updateShopCart() {
-    $("#count_products_cart").html(data);
+function sb_remove_from_basket(product) {
+  $(product).parents(".product").remove(); //удаляємо батьківський елемента з класом .product
 }

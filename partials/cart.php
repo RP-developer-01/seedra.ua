@@ -71,13 +71,13 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/partials/header.php');
                             </div>
 
                             <div class="product__price<?= $cartProducts['id_product'] ?>">
-                                <span id="itemPrice_<?= $cartProducts['id_product'] ?>" value="<?= $cartProducts['price'] ?>">
+                                <span class="itemPrice" id="itemPrice_<?= $cartProducts['id_product'] ?>" value="<?= $cartProducts['price'] ?>">
                                     <?= $cartProducts['price'] ?>$
                                 </span>
                             </div>
                             <div class="product__controls">
                                 <button type="button">
-                                    <img src="/assets/img/x.svg" id="delete_id<?= $cartProducts['id_product']; ?>" onclick='deleteProduct(<?= $cartProducts['id_product']; ?>)' alt="Видалення з корзини">
+                                    <img src="/assets/img/x.svg" class="btn_delete" id="delete_id<?= $cartProducts['id_product']; ?>" onclick='deleteProduct(this, <?= $cartProducts['id_product']; ?>)' alt="Видалення з корзини"><!-- onclick='deleteProduct( $cartProducts['id_product']; ?>)'-->
                                 </button>
                             </div>
                         </section>
